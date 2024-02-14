@@ -31,33 +31,33 @@ function disableInAppInstallPrompt() {
 }
 
 const notificationButton = document.querySelector("#notification");
-const notificationButton2 = document.querySelector("#notification2");
+let permission = Notification.permission;
 
-const showNotification = () => {
-  // create a new notification
-  const notification = new Notification('JavaScript Notification API', {
-      body: 'This is a JavaScript Notification API demo',
-      icon: './apple-touch-icon.png',
-      vibrate: true
-  });
-
-  // close the notification after 10 seconds
-  setTimeout(() => {
-      notification.close();
-  }, 10 * 1000);
-
-  // navigate to a URL
-  notification.addEventListener('click', () => {
-      window.open('https://simplepwa.vakhula.dev/', '_blank');
-  });
+if(permission === "granted") {
+  showNotification();
+} else if(permission === "default"){
+  requestAndShowPermission();
+} else {
+  alert("Use normal alert");
 }
 
-notificationButton.addEventListener("click", async () => {
-  showNotification()
-});
+function requestAndShowPermission() {
+  Notification.requestPermission(function (permission) {
+   if (permission === "granted") {
+         showNotification();
+   }
+  });
+  }
 
-notificationButton.addEventListener("click", async () => {
-  setTimeout(() => {
-    showNotification()
-  }, 30000)
-});
+function showNotification() {
+  // if(document.visibilityState === "visible) {return;}
+
+
+var title = "JavaScript Jeep";   icon = "image-url";
+var body = "Message to be displayed";
+var notification = new Notification('Title', { body, icon });
+notification.onclick = () => {
+     notification.close();
+     window.parent.focus();
+}
+}

@@ -1,4 +1,4 @@
-const cacheName = "cache3"; // Change value to force update
+const cacheName = "cache4"; // Change value to force update
 
 self.addEventListener("install", event => {
 	// Kick out the old service worker
@@ -81,35 +81,35 @@ self.addEventListener("fetch", event => {
 	);
 });
 
-self.addEventListener('message', (event) => {
-	if (event.data && event.data.type === 'MESSAGE_IDENTIFIER') {
-		let randy = Math.floor(Math.random() * 100);
-		let notification = {
-			title: 'Test ' + randy,
-			options: { body: 'Test body ' + randy }
-		};
+// self.addEventListener('message', (event) => {
+// 	if (event.data && event.data.type === 'MESSAGE_IDENTIFIER') {
+// 		let randy = Math.floor(Math.random() * 100);
+// 		let notification = {
+// 			title: 'Test ' + randy,
+// 			options: { body: 'Test body ' + randy }
+// 		};
 
-		self.registration.showNotification(
-			notification.title,
-			notification.options
-		  ).catch((error) => {
-			console.log(error);
-		  });
+// 		self.registration.showNotification(
+// 			notification.title,
+// 			notification.options
+// 		  ).catch((error) => {
+// 			console.log(error);
+// 		  });
 		
-	} else if (event.data && event.data.type === 'MESSAGE_IDENTIFIER2') {
-		let randy = Math.floor(Math.random() * 100);
-		let notification = {
-			title: 'Test ' + randy,
-			options: { body: 'Test body ' + randy }
-		};
-		setTimeout(() => {
-			self.registration.showNotification(
-				notification.title,
-				notification.options
-			  ).catch((error) => {
-				console.log(error);
-			  });
-		}, 30000)
-	}
-});
+// 	} else if (event.data && event.data.type === 'MESSAGE_IDENTIFIER2') {
+// 		let randy = Math.floor(Math.random() * 100);
+// 		let notification = {
+// 			title: 'Test ' + randy,
+// 			options: { body: 'Test body ' + randy }
+// 		};
+// 		setTimeout(() => {
+// 			self.registration.showNotification(
+// 				notification.title,
+// 				notification.options
+// 			  ).catch((error) => {
+// 				console.log(error);
+// 			  });
+// 		}, 30000)
+// 	}
+// });
 
