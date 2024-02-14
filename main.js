@@ -33,14 +33,31 @@ function disableInAppInstallPrompt() {
 const notificationButton = document.querySelector("#notification");
 const notificationButton2 = document.querySelector("#notification2");
 
-notificationButton.addEventListener("click", async () => {
-  navigator.serviceWorker.controller.postMessage({
-    type: 'MESSAGE_IDENTIFIER',
+const showNotification = () => {
+  // create a new notification
+  const notification = new Notification('JavaScript Notification API', {
+      body: 'This is a JavaScript Notification API demo',
+      icon: './apple-touch-icon.png',
+      vibrate: true
   });
+
+  // close the notification after 10 seconds
+  setTimeout(() => {
+      notification.close();
+  }, 10 * 1000);
+
+  // navigate to a URL
+  notification.addEventListener('click', () => {
+      window.open('https://simplepwa.vakhula.dev/', '_blank');
+  });
+}
+
+notificationButton.addEventListener("click", async () => {
+  showNotification()
 });
 
 notificationButton.addEventListener("click", async () => {
-  navigator.serviceWorker.controller.postMessage({
-    type: 'MESSAGE_IDENTIFIER2',
-  });
+  setTimeout(() => {
+    showNotification()
+  }, 30000)
 });
