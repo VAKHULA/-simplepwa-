@@ -29,3 +29,18 @@ function disableInAppInstallPrompt() {
   installPrompt = null;
   installButton.setAttribute("hidden", "");
 }
+
+const notificationButton = document.querySelector("#notification");
+const notificationButton2 = document.querySelector("#notification2");
+
+notificationButton.addEventListener("click", async () => {
+  navigator.serviceWorker.controller.postMessage({
+    type: 'MESSAGE_IDENTIFIER',
+  });
+});
+
+notificationButton.addEventListener("click", async () => {
+  navigator.serviceWorker.controller.postMessage({
+    type: 'MESSAGE_IDENTIFIER2',
+  });
+});
